@@ -35,19 +35,21 @@
 
         /* Google Ads Section */
         .ads-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
+            height: 60px;
+            /*background: red;*/
+            background: white;
+            /*backdrop-filter: blur(10px);*/
+            /*border-radius: 15px;*/
+            /*padding: 20px;*/
+            margin-bottom: 10px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            /*border: 1px solid rgba(255, 255, 255, 0.2);*/
         }
 
         .ads-placeholder {
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 40px 20px;
+            /*border-radius: 10px;*/
+            /*padding: 20px 20px;*/
             color: #666;
             font-size: 16px;
             font-weight: 500;
@@ -86,7 +88,7 @@
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 18px;
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 25px;
@@ -102,11 +104,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
 
         .input-label {
-            font-size: 11px;
+            font-size: 18px;
             font-weight: 600;
             color: #4a5568;
         }
@@ -129,7 +131,7 @@
 
         .slider-container {
             position: relative;
-            margin: 20px 0;
+            margin: 0px 0;
         }
 
         .slider {
@@ -195,7 +197,7 @@
             position: relative;
             width: 350px;
             height: 220px;
-            margin: 0 auto 30px;
+            margin: 0 auto 0px;
         }
 
         .speedometer {
@@ -262,10 +264,11 @@
 
         /* BMI Results */
         .bmi-value {
-            font-size: 48px;
+            font-size: 24px;
             font-weight: 700;
             color: #2d3748;
             margin-bottom: 10px;
+            margin-right: 20px;
         }
 
         .bmi-category {
@@ -309,7 +312,7 @@
         }
 
         .bmi-description {
-            font-size: 16px;
+            font-size: 11px;
             color: #4a5568;
             line-height: 1.8;
             max-width: 1000px;
@@ -464,8 +467,8 @@
         <!-- Google Ads Section -->
         <section class="ads-section">
             <div class="ads-placeholder">
-                <p>Google AdSense Advertisement Space</p>
-                <small>Responsive ads will be displayed here</small>
+<!--                <p>Google AdSense Advertisement Space</p>-->
+<!--                <small>Responsive ads will be displayed here</small>-->
             </div>
         </section>
 
@@ -548,11 +551,9 @@
                 <div class="bmi-container">
                     <h2 class="section-title" style="margin-right: 20px">Your BMI</h2>
                     <div class="bmi-value" id="bmi-value">24.2</div>
+                    <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
                 </div>
 
-<!--                <h2 class="section-title">Your BMI</h2>-->
-<!--                <div class="bmi-value" id="bmi-value">24.2</div>-->
-                <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
                 <div class="bmi-description" id="bmi-description">
                     Your BMI indicates that you have a normal weight for your height.
                 </div>
