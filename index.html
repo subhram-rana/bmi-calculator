@@ -68,6 +68,13 @@
             }
         }
 
+        .bmi-container {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
         /* BMI Calculator Section */
         .calculator-section {
             background: rgba(255, 255, 255, 0.95);
@@ -99,7 +106,7 @@
         }
 
         .input-label {
-            font-size: 18px;
+            font-size: 11px;
             font-weight: 600;
             color: #4a5568;
         }
@@ -127,7 +134,7 @@
 
         .slider {
             width: 100%;
-            height: 8px;
+            height: 3px;
             border-radius: 4px;
             background: linear-gradient(to right, #e2e8f0, #4299e1);
             outline: none;
@@ -163,7 +170,7 @@
 
         .value-display {
             text-align: center;
-            font-size: 20px;
+            font-size: 12px;
             font-weight: 600;
             color: #2d3748;
             margin-top: 10px;
@@ -262,7 +269,7 @@
         }
 
         .bmi-category {
-            font-size: 24px;
+            font-size: 12px;
             font-weight: 600;
             padding: 10px 20px;
             border-radius: 25px;
@@ -305,7 +312,7 @@
             font-size: 16px;
             color: #4a5568;
             line-height: 1.8;
-            max-width: 300px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -464,75 +471,36 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Calculator Section -->
-            <section class="calculator-section">
-                <h1 class="section-title">BMI Calculator</h1>
-                
-                <!-- Height Input -->
-                <div class="input-section">
-                    <div class="input-header">
-                        <label class="input-label">Height</label>
-                        <button class="unit-selector" onclick="openUnitModal('height')">
-                            <span id="height-unit-display">cm</span>
-                        </button>
-                    </div>
-                    <div class="slider-container">
-                        <input type="range" class="slider" id="height-slider" 
-                               min="100" max="300" value="170" 
-                               oninput="updateHeight(this.value)">
-                    </div>
-                    <div class="value-display" id="height-display">170 cm</div>
-                </div>
-
-                <!-- Weight Input -->
-                <div class="input-section">
-                    <div class="input-header">
-                        <label class="input-label">Weight</label>
-                        <button class="unit-selector" onclick="openUnitModal('weight')">
-                            <span id="weight-unit-display">kg</span>
-                        </button>
-                    </div>
-                    <div class="slider-container">
-                        <input type="range" class="slider" id="weight-slider" 
-                               min="30" max="300" value="70" 
-                               oninput="updateWeight(this.value)">
-                    </div>
-                    <div class="value-display" id="weight-display">70 kg</div>
-                </div>
-            </section>
-
             <!-- Results Section -->
             <section class="results-section">
-                <h2 class="section-title">Your BMI Result</h2>
-                
                 <!-- Speedometer -->
                 <div class="speedometer-container">
                     <svg class="speedometer" viewBox="0 0 350 220">
                         <!-- Background arcs with proper BMI ranges -->
                         <!-- Underweight: BMI < 18.5 -->
-                        <path class="speedometer-arc arc-underweight" 
+                        <path class="speedometer-arc arc-underweight"
                               d="M 50 150 A 125 125 0 0 1 105 45" />
-                        
+
                         <!-- Normal: BMI 18.5-24.9 -->
-                        <path class="speedometer-arc arc-normal" 
+                        <path class="speedometer-arc arc-normal"
                               d="M 105 45 A 125 125 0 0 1 175 25" />
-                        
+
                         <!-- Overweight: BMI 25-29.9 -->
-                        <path class="speedometer-arc arc-overweight" 
+                        <path class="speedometer-arc arc-overweight"
                               d="M 175 25 A 125 125 0 0 1 245 45" />
-                        
+
                         <!-- Obese Class I: BMI 30-34.9 -->
-                        <path class="speedometer-arc arc-obese-1" 
+                        <path class="speedometer-arc arc-obese-1"
                               d="M 245 45 A 125 125 0 0 1 285 90" />
-                        
+
                         <!-- Obese Class II: BMI 35-39.9 -->
-                        <path class="speedometer-arc arc-obese-2" 
+                        <path class="speedometer-arc arc-obese-2"
                               d="M 285 90 A 125 125 0 0 1 310 135" />
-                        
+
                         <!-- Obese Class III: BMI ≥ 40 -->
-                        <path class="speedometer-arc arc-obese-3" 
+                        <path class="speedometer-arc arc-obese-3"
                               d="M 310 135 A 125 125 0 0 1 300 150" />
-                        
+
                         <!-- Needle with arrow tip -->
                         <g class="speedometer-needle" id="needle-group">
                             <!-- Needle line -->
@@ -540,10 +508,10 @@
                             <!-- Arrow tip -->
                             <polygon points="175,35 170,45 180,45" fill="#2d3748"/>
                         </g>
-                        
+
                         <!-- Center circle -->
                         <circle class="speedometer-center" cx="175" cy="150" r="10" />
-                        
+
                         <!-- BMI value markers -->
                         <text x="60" y="165" class="bmi-value-label">16</text>
                         <text x="105" y="55" class="bmi-value-label">18.5</text>
@@ -552,7 +520,7 @@
                         <text x="285" y="100" class="bmi-value-label">35</text>
                         <text x="310" y="145" class="bmi-value-label">40</text>
                     </svg>
-                    
+
                     <!-- Category Labels positioned outside the arc -->
                     <div class="speedometer-labels">
                         <div class="bmi-range-label" style="left: 15%; top: 85%;">
@@ -577,10 +545,53 @@
                 </div>
 
                 <!-- BMI Value and Category -->
-                <div class="bmi-value" id="bmi-value">24.2</div>
+                <div class="bmi-container">
+                    <h2 class="section-title" style="margin-right: 20px">Your BMI</h2>
+                    <div class="bmi-value" id="bmi-value">24.2</div>
+                </div>
+
+<!--                <h2 class="section-title">Your BMI</h2>-->
+<!--                <div class="bmi-value" id="bmi-value">24.2</div>-->
                 <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
                 <div class="bmi-description" id="bmi-description">
                     Your BMI indicates that you have a normal weight for your height.
+                </div>
+            </section>
+
+            <!-- Calculator Section -->
+            <section class="calculator-section">
+<!--                <h1 class="section-title">BMI Calculator</h1>-->
+                
+                <!-- Height Input -->
+                <div class="input-section">
+                    <div class="input-header">
+                        <label class="input-label">Height</label>
+                        <div class="value-display" id="height-display">170 cm</div>
+                        <button class="unit-selector" onclick="openUnitModal('height')">
+                            <span id="height-unit-display">cm</span>
+                        </button>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="height-slider" 
+                               min="100" max="300" value="170" 
+                               oninput="updateHeight(this.value)">
+                    </div>
+                </div>
+
+                <!-- Weight Input -->
+                <div class="input-section">
+                    <div class="input-header">
+                        <label class="input-label">Weight</label>
+                        <div class="value-display" id="weight-display">70 kg</div>
+                        <button class="unit-selector" onclick="openUnitModal('weight')">
+                            <span id="weight-unit-display">kg</span>
+                        </button>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="weight-slider" 
+                               min="30" max="300" value="70" 
+                               oninput="updateWeight(this.value)">
+                    </div>
                 </div>
             </section>
         </div>
