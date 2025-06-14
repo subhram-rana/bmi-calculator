@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - Professional Body Mass Index Tool</title>
+    <meta name="description" content="Professional BMI Calculator with animated speedometer. Calculate your Body Mass Index instantly with our responsive, user-friendly tool. Works on all devices.">
+    <meta name="keywords" content="BMI calculator, body mass index, fitness, health, weight calculator, BMI tool">
+    <meta name="author" content="BMI Calculator App">
+    <meta property="og:title" content="Professional BMI Calculator Tool">
+    <meta property="og:description" content="Calculate your BMI instantly with our professional, responsive BMI calculator featuring animated speedometer visualization.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="/">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Google Ads Section */
+        .ads-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .ads-placeholder {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+        }
+
+        /* BMI Calculator Section */
+        .calculator-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* Input Sections */
+        .input-section {
+            margin-bottom: 25px;
+        }
+
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .input-label {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .unit-selector {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .unit-selector:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .slider-container {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #e2e8f0, #4299e1);
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #4299e1;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: #3182ce;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #4299e1;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .value-display {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(66, 153, 225, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Results Section */
+        .results-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        /* Speedometer */
+        .speedometer-container {
+            position: relative;
+            width: 350px;
+            height: 220px;
+            margin: 0 auto 30px;
+        }
+
+        .speedometer {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .speedometer-arc {
+            stroke-width: 25;
+            fill: none;
+        }
+
+        .arc-underweight { stroke: #ff6b6b; }
+        .arc-normal { stroke: #4ecdc4; }
+        .arc-overweight { stroke: #ffe66d; }
+        .arc-obese-1 { stroke: #ff8b5a; }
+        .arc-obese-2 { stroke: #ff6b47; }
+        .arc-obese-3 { stroke: #d63031; }
+
+        .speedometer-needle {
+            stroke: #2d3748;
+            stroke-width: 3;
+            fill: #2d3748;
+            transition: all 0.5s ease;
+            transform-origin: 175px 150px;
+        }
+
+        .speedometer-center {
+            fill: #2d3748;
+        }
+
+        .speedometer-labels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .bmi-range-label {
+            position: absolute;
+            font-size: 10px;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            line-height: 1.2;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3px 6px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+        }
+
+        .bmi-value-label {
+            position: absolute;
+            font-size: 8px;
+            font-weight: 500;
+            color: #666;
+            transform: translate(-50%, -50%);
+        }
+
+        /* BMI Results */
+        .bmi-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .bmi-category {
+            font-size: 24px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .category-underweight {
+            background: rgba(255, 107, 107, 0.2);
+            color: #c92a2a;
+        }
+
+        .category-normal {
+            background: rgba(78, 205, 196, 0.2);
+            color: #0c8577;
+        }
+
+        .category-overweight {
+            background: rgba(255, 230, 109, 0.2);
+            color: #e67e22;
+        }
+
+        .category-obese-1 {
+            background: rgba(255, 139, 90, 0.2);
+            color: #d63031;
+        }
+
+        .category-obese-2 {
+            background: rgba(255, 107, 71, 0.2);
+            color: #a71e34;
+        }
+
+        .category-obese-3 {
+            background: rgba(214, 48, 49, 0.2);
+            color: #8b0000;
+        }
+
+        .bmi-description {
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.8;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Unit Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .unit-option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .unit-option:hover {
+            background: #edf2f7;
+            border-color: #4299e1;
+        }
+
+        .unit-option.selected {
+            background: #4299e1;
+            color: white;
+            border-color: #3182ce;
+        }
+
+        .close {
+            color: #a0aec0;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: -10px;
+        }
+
+        .close:hover {
+            color: #2d3748;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .speedometer-container {
+                width: 320px;
+                height: 200px;
+            }
+
+            .bmi-range-label {
+                font-size: 9px;
+                padding: 2px 4px;
+            }
+
+            .bmi-value {
+                font-size: 36px;
+            }
+
+            .bmi-category {
+                font-size: 20px;
+            }
+
+            .calculator-section,
+            .results-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .speedometer-container {
+                width: 280px;
+                height: 170px;
+            }
+
+            .bmi-range-label {
+                font-size: 8px;
+                padding: 1px 3px;
+            }
+
+            .bmi-value-label {
+                font-size: 7px;
+            }
+
+            .bmi-value {
+                font-size: 32px;
+            }
+
+            .bmi-category {
+                font-size: 18px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .pulse {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Google Ads Section -->
+        <section class="ads-section">
+            <div class="ads-placeholder">
+                <p>Google AdSense Advertisement Space</p>
+                <small>Responsive ads will be displayed here</small>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Calculator Section -->
+            <section class="calculator-section">
+                <h1 class="section-title">BMI Calculator</h1>
+                
+                <!-- Height Input -->
+                <div class="input-section">
+                    <div class="input-header">
+                        <label class="input-label">Height</label>
+                        <button class="unit-selector" onclick="openUnitModal('height')">
+                            <span id="height-unit-display">cm</span>
+                        </button>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="height-slider" 
+                               min="100" max="300" value="170" 
+                               oninput="updateHeight(this.value)">
+                    </div>
+                    <div class="value-display" id="height-display">170 cm</div>
+                </div>
+
+                <!-- Weight Input -->
+                <div class="input-section">
+                    <div class="input-header">
+                        <label class="input-label">Weight</label>
+                        <button class="unit-selector" onclick="openUnitModal('weight')">
+                            <span id="weight-unit-display">kg</span>
+                        </button>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="weight-slider" 
+                               min="30" max="300" value="70" 
+                               oninput="updateWeight(this.value)">
+                    </div>
+                    <div class="value-display" id="weight-display">70 kg</div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <h2 class="section-title">Your BMI Result</h2>
+                
+                <!-- Speedometer -->
+                <div class="speedometer-container">
+                    <svg class="speedometer" viewBox="0 0 350 220">
+                        <!-- Background arcs with proper BMI ranges -->
+                        <!-- Underweight: BMI < 18.5 -->
+                        <path class="speedometer-arc arc-underweight" 
+                              d="M 50 150 A 125 125 0 0 1 105 45" />
+                        
+                        <!-- Normal: BMI 18.5-24.9 -->
+                        <path class="speedometer-arc arc-normal" 
+                              d="M 105 45 A 125 125 0 0 1 175 25" />
+                        
+                        <!-- Overweight: BMI 25-29.9 -->
+                        <path class="speedometer-arc arc-overweight" 
+                              d="M 175 25 A 125 125 0 0 1 245 45" />
+                        
+                        <!-- Obese Class I: BMI 30-34.9 -->
+                        <path class="speedometer-arc arc-obese-1" 
+                              d="M 245 45 A 125 125 0 0 1 285 90" />
+                        
+                        <!-- Obese Class II: BMI 35-39.9 -->
+                        <path class="speedometer-arc arc-obese-2" 
+                              d="M 285 90 A 125 125 0 0 1 310 135" />
+                        
+                        <!-- Obese Class III: BMI ≥ 40 -->
+                        <path class="speedometer-arc arc-obese-3" 
+                              d="M 310 135 A 125 125 0 0 1 300 150" />
+                        
+                        <!-- Needle with arrow tip -->
+                        <g class="speedometer-needle" id="needle-group">
+                            <!-- Needle line -->
+                            <line x1="175" y1="150" x2="175" y2="40" stroke="#2d3748" stroke-width="3"/>
+                            <!-- Arrow tip -->
+                            <polygon points="175,35 170,45 180,45" fill="#2d3748"/>
+                        </g>
+                        
+                        <!-- Center circle -->
+                        <circle class="speedometer-center" cx="175" cy="150" r="10" />
+                        
+                        <!-- BMI value markers -->
+                        <text x="60" y="165" class="bmi-value-label">16</text>
+                        <text x="105" y="55" class="bmi-value-label">18.5</text>
+                        <text x="175" y="35" class="bmi-value-label">25</text>
+                        <text x="245" y="55" class="bmi-value-label">30</text>
+                        <text x="285" y="100" class="bmi-value-label">35</text>
+                        <text x="310" y="145" class="bmi-value-label">40</text>
+                    </svg>
+                    
+                    <!-- Category Labels positioned outside the arc -->
+                    <div class="speedometer-labels">
+                        <div class="bmi-range-label" style="left: 15%; top: 85%;">
+                            Underweight<br><small>&lt; 18.5</small>
+                        </div>
+                        <div class="bmi-range-label" style="left: 30%; top: 15%;">
+                            Normal<br><small>18.5 - 24.9</small>
+                        </div>
+                        <div class="bmi-range-label" style="left: 70%; top: 15%;">
+                            Overweight<br><small>25 - 29.9</small>
+                        </div>
+                        <div class="bmi-range-label" style="left: 85%; top: 35%;">
+                            Obese Class I<br><small>30 - 34.9</small>
+                        </div>
+                        <div class="bmi-range-label" style="left: 92%; top: 60%;">
+                            Obese Class II<br><small>35 - 39.9</small>
+                        </div>
+                        <div class="bmi-range-label" style="left: 88%; top: 85%;">
+                            Obese Class III<br><small>≥ 40</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BMI Value and Category -->
+                <div class="bmi-value" id="bmi-value">24.2</div>
+                <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
+                <div class="bmi-description" id="bmi-description">
+                    Your BMI indicates that you have a normal weight for your height.
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Unit Selection Modal -->
+    <div id="unit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUnitModal()">&times;</span>
+            <h3 class="modal-title" id="modal-title">Select Unit</h3>
+            <div id="unit-options"></div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentHeight = 170; // cm
+        let currentWeight = 70; // kg
+        let heightUnit = 'cm';
+        let weightUnit = 'kg';
+        let currentModal = null;
+
+        // Unit conversion functions
+        function cmToFeetInches(cm) {
+            const totalInches = cm / 2.54;
+            const feet = Math.floor(totalInches / 12);
+            const inches = Math.round(totalInches % 12);
+            return { feet, inches };
+        }
+
+        function feetInchesToCm(feet, inches) {
+            return Math.round((feet * 12 + inches) * 2.54);
+        }
+
+        function kgToLbs(kg) {
+            return Math.round(kg * 2.20462);
+        }
+
+        function lbsToKg(lbs) {
+            return Math.round(lbs / 2.20462);
+        }
+
+        // Display formatting functions
+        function formatHeightDisplay(value, unit) {
+            if (unit === 'cm') {
+                return `${value} cm`;
+            } else {
+                const { feet, inches } = cmToFeetInches(value);
+                return `${feet}' ${inches}"`;
+            }
+        }
+
+        function formatWeightDisplay(value, unit) {
+            if (unit === 'kg') {
+                return `${value} kg`;
+            } else {
+                return `${kgToLbs(value)} lbs`;
+            }
+        }
+
+        // BMI calculation
+        function calculateBMI(height, weight) {
+            const heightInM = height / 100;
+            return Math.round((weight / (heightInM * heightInM)) * 10) / 10;
+        }
+
+        // BMI category determination with obesity classes
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return 'underweight';
+            if (bmi < 25) return 'normal';
+            if (bmi < 30) return 'overweight';
+            if (bmi < 35) return 'obese-1';
+            if (bmi < 40) return 'obese-2';
+            return 'obese-3';
+        }
+
+        function getBMICategoryText(category) {
+            const categories = {
+                'underweight': 'Underweight',
+                'normal': 'Normal Weight',
+                'overweight': 'Overweight',
+                'obese-1': 'Obese Class I',
+                'obese-2': 'Obese Class II',
+                'obese-3': 'Obese Class III'
+            };
+            return categories[category];
+        }
+
+        function getBMIDescription(category) {
+            const descriptions = {
+                'underweight': 'Your BMI indicates that you are underweight. Consider consulting with a healthcare professional about healthy weight gain strategies.',
+                'normal': 'Your BMI indicates that you have a normal weight for your height. Keep up the good work maintaining a healthy lifestyle!',
+                'overweight': 'Your BMI indicates that you are overweight. Consider adopting a healthier diet and increasing physical activity.',
+                'obese-1': 'Your BMI indicates Class I obesity. We recommend consulting with a healthcare professional for personalized advice on achieving a healthier weight.',
+                'obese-2': 'Your BMI indicates Class II obesity (severe obesity). Please consult with a healthcare professional for comprehensive weight management strategies.',
+                'obese-3': 'Your BMI indicates Class III obesity (morbid obesity). It is important to seek immediate medical consultation for your health and safety.'
+            };
+            return descriptions[category];
+        }
+
+        // Speedometer needle animation with proper BMI ranges
+        function updateSpeedometerNeedle(bmi) {
+            const needleGroup = document.getElementById('needle-group');
+            let angle;
+            
+            // Calculate angle based on BMI value
+            // Total range: -90° to +90° (180° semicircle)
+            if (bmi < 18.5) {
+                // Underweight: -90° to -45° (45° range)
+                const ratio = Math.min(bmi / 18.5, 1);
+                angle = -90 + (ratio * 45);
+            } else if (bmi < 25) {
+                // Normal: -45° to 0° (45° range)
+                const ratio = (bmi - 18.5) / 6.5;
+                angle = -45 + (ratio * 45);
+            } else if (bmi < 30) {
+                // Overweight: 0° to +45° (45° range)
+                const ratio = (bmi - 25) / 5;
+                angle = 0 + (ratio * 45);
+            } else if (bmi < 35) {
+                // Obese Class I: +45° to +65° (20° range)
+                const ratio = (bmi - 30) / 5;
+                angle = 45 + (ratio * 20);
+            } else if (bmi < 40) {
+                // Obese Class II: +65° to +80° (15° range)
+                const ratio = (bmi - 35) / 5;
+                angle = 65 + (ratio * 15);
+            } else {
+                // Obese Class III: +80° to +90° (10° range)
+                const ratio = Math.min((bmi - 40) / 10, 1);
+                angle = 80 + (ratio * 10);
+            }
+            
+            // Clamp angle to prevent going beyond visible range
+            angle = Math.max(-90, Math.min(90, angle));
+            
+            needleGroup.style.transform = `rotate(${angle}deg)`;
+        }
+
+        // Update BMI results
+        function updateBMI() {
+            const bmi = calculateBMI(currentHeight, currentWeight);
+            const category = getBMICategory(bmi);
+            
+            document.getElementById('bmi-value').textContent = bmi.toFixed(1);
+            
+            const categoryElement = document.getElementById('bmi-category');
+            categoryElement.textContent = getBMICategoryText(category);
+            categoryElement.className = `bmi-category category-${category}`;
+            
+            document.getElementById('bmi-description').textContent = getBMIDescription(category);
+            
+            updateSpeedometerNeedle(bmi);
+        }
+
+        // Height update function
+        function updateHeight(value) {
+            currentHeight = parseInt(value);
+            document.getElementById('height-display').textContent = formatHeightDisplay(currentHeight, heightUnit);
+            updateBMI();
+        }
+
+        // Weight update function
+        function updateWeight(value) {
+            currentWeight = parseInt(value);
+            document.getElementById('weight-display').textContent = formatWeightDisplay(currentWeight, weightUnit);
+            updateBMI();
+        }
+
+        // Modal functions
+        function openUnitModal(type) {
+            currentModal = type;
+            const modal = document.getElementById('unit-modal');
+            const title = document.getElementById('modal-title');
+            const options = document.getElementById('unit-options');
+            
+            if (type === 'height') {
+                title.textContent = 'Select Height Unit';
+                options.innerHTML = `
+                    <button class="unit-option ${heightUnit === 'cm' ? 'selected' : ''}" 
+                            onclick="selectUnit('cm')">Centimeters (cm)</button>
+                    <button class="unit-option ${heightUnit === 'ft' ? 'selected' : ''}" 
+                            onclick="selectUnit('ft')">Feet & Inches</button>
+                `;
+            } else {
+                title.textContent = 'Select Weight Unit';
+                options.innerHTML = `
+                    <button class="unit-option ${weightUnit === 'kg' ? 'selected' : ''}" 
+                            onclick="selectUnit('kg')">Kilograms (kg)</button>
+                    <button class="unit-option ${weightUnit === 'lbs' ? 'selected' : ''}" 
+                            onclick="selectUnit('lbs')">Pounds (lbs)</button>
+                `;
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeUnitModal() {
+            document.getElementById('unit-modal').style.display = 'none';
+        }
+
+        function selectUnit(unit) {
+            if (currentModal === 'height') {
+                heightUnit = unit;
+                document.getElementById('height-unit-display').textContent = unit === 'cm' ? 'cm' : 'ft';
+                
+                const slider = document.getElementById('height-slider');
+                if (unit === 'cm') {
+                    slider.min = 100;
+                    slider.max = 300;
+                    slider.value = currentHeight;
+                } else {
+                    slider.min = 122; // 4 feet in cm
+                    slider.max = 305; // 10 feet in cm
+                    slider.value = currentHeight;
+                }
+                
+                document.getElementById('height-display').textContent = formatHeightDisplay(currentHeight, heightUnit);
+            } else {
+                weightUnit = unit;
+                document.getElementById('weight-unit-display').textContent = unit;
+                
+                const slider = document.getElementById('weight-slider');
+                if (unit === 'kg') {
+                    slider.min = 30;
+                    slider.max = 300;
+                    slider.value = currentWeight;
+                } else {
+                    slider.min = 66; // 30 kg in lbs
+                    slider.max = 661; // 300 kg in lbs
+                    slider.value = kgToLbs(currentWeight);
+                }
+                
+                document.getElementById('weight-display').textContent = formatWeightDisplay(currentWeight, weightUnit);
+            }
+            
+            closeUnitModal();
+        }
+
+        // Modal close on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('unit-modal');
+            if (event.target === modal) {
+                closeUnitModal();
+            }
+        }
+
+        // Initialize the app
+        function initializeApp() {
+            updateBMI();
+            
+            // Set up slider event listeners with proper unit conversion
+            document.getElementById('weight-slider').addEventListener('input', function(e) {
+                let value = parseInt(e.target.value);
+                if (weightUnit === 'lbs') {
+                    currentWeight = lbsToKg(value);
+                } else {
+                    currentWeight = value;
+                }
+                document.getElementById('weight-display').textContent = formatWeightDisplay(currentWeight, weightUnit);
+                updateBMI();
+            });
+        }
+
+        // Load the app when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeApp);
+
+        // SEO and Performance optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load animations
+            const elements = document.querySelectorAll('.calculator-section, .results-section');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.5s ease';
+            });
+            
+            setTimeout(() => {
+                elements.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
