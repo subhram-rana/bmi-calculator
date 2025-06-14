@@ -91,7 +91,7 @@
             font-size: 18px;
             font-weight: 700;
             color: #2d3748;
-            margin-bottom: 25px;
+            margin-bottom: 2px;
             text-align: center;
         }
 
@@ -109,7 +109,7 @@
 
         .input-label {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 200;
             color: #4a5568;
         }
 
@@ -255,29 +255,28 @@
         }
 
         .bmi-value-label {
-            position: absolute;
+            /*position: absolute;*/
             font-size: 8px;
-            font-weight: 500;
+            font-weight: 1000;
             color: #666;
             transform: translate(-50%, -50%);
         }
 
         /* BMI Results */
         .bmi-value {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 800;
             color: #2d3748;
-            margin-bottom: 10px;
-            margin-right: 20px;
+            margin-bottom: 2px;
         }
 
         .bmi-category {
             font-size: 12px;
-            font-weight: 600;
-            padding: 10px 20px;
+            font-weight: 200;
+            padding: 3px 20px;
             border-radius: 25px;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             transition: all 0.3s ease;
         }
 
@@ -315,7 +314,7 @@
             font-size: 11px;
             color: #4a5568;
             line-height: 1.8;
-            max-width: 1000px;
+            max-width: 300px;
             margin: 0 auto;
         }
 
@@ -551,8 +550,9 @@
                 <div class="bmi-container">
                     <h2 class="section-title" style="margin-right: 20px">Your BMI</h2>
                     <div class="bmi-value" id="bmi-value">24.2</div>
-                    <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
                 </div>
+
+                <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
 
                 <div class="bmi-description" id="bmi-description">
                     Your BMI indicates that you have a normal weight for your height.
