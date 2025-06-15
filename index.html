@@ -89,8 +89,8 @@
 
         .section-title {
             font-size: 18px;
-            font-weight: 700;
-            color: #2d3748;
+            font-weight: 200;
+            color: #3182ce;
             margin-bottom: 2px;
             text-align: center;
         }
@@ -108,19 +108,19 @@
         }
 
         .input-label {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 200;
-            color: #4a5568;
+            color: #3182ce;
         }
 
         .unit-selector {
             background: #4299e1;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 10px;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 200;
             transition: all 0.3s ease;
         }
 
@@ -172,8 +172,8 @@
 
         .value-display {
             text-align: center;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 10px;
+            font-weight: 200;
             color: #2d3748;
             margin-top: 10px;
             padding: 5px;
@@ -265,14 +265,14 @@
         /* BMI Results */
         .bmi-value {
             font-size: 20px;
-            font-weight: 800;
-            color: #2d3748;
+            font-weight: 1000;
+            color: #446ec2;
             margin-bottom: 2px;
         }
 
         .bmi-category {
             font-size: 12px;
-            font-weight: 800;
+            font-weight: 600;
             padding: 3px 20px;
             border-radius: 25px;
             display: inline-block;
@@ -394,7 +394,7 @@
             }
 
             .section-title {
-                font-size: 18px;
+                font-size: 15px;
             }
 
             .speedometer-container {
@@ -437,11 +437,11 @@
             }
 
             .bmi-value {
-                font-size: 20px;
+                font-size: 18px;
             }
 
             .bmi-category {
-                font-size: 15px;
+                font-size: 12px;
             }
         }
 
@@ -557,44 +557,77 @@
                 <div class="bmi-description" id="bmi-description">
                     Your BMI indicates that you have a normal weight for your height.
                 </div>
+
+                <div style="margin-top: 30px">
+                    <!-- Height Input -->
+                    <div class="input-section">
+                        <div class="input-header">
+                            <label class="input-label">Height</label>
+                            <div class="value-display" id="height-display">170 cm</div>
+                            <button class="unit-selector" onclick="openUnitModal('height')">
+                                <span id="height-unit-display">cm</span>
+                            </button>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="height-slider"
+                                   min="100" max="300" value="170"
+                                   oninput="updateHeight(this.value)">
+                        </div>
+                    </div>
+
+                    <!-- Weight Input -->
+                    <div class="input-section">
+                        <div class="input-header">
+                            <label class="input-label">Weight</label>
+                            <div class="value-display" id="weight-display">70 kg</div>
+                            <button class="unit-selector" onclick="openUnitModal('weight')">
+                                <span id="weight-unit-display">kg</span>
+                            </button>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="weight-slider"
+                                   min="30" max="300" value="70"
+                                   oninput="updateWeight(this.value)">
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- Calculator Section -->
-            <section class="calculator-section">
-<!--                <h1 class="section-title">BMI Calculator</h1>-->
-                
-                <!-- Height Input -->
-                <div class="input-section">
-                    <div class="input-header">
-                        <label class="input-label">Height</label>
-                        <div class="value-display" id="height-display">170 cm</div>
-                        <button class="unit-selector" onclick="openUnitModal('height')">
-                            <span id="height-unit-display">cm</span>
-                        </button>
-                    </div>
-                    <div class="slider-container">
-                        <input type="range" class="slider" id="height-slider" 
-                               min="100" max="300" value="170" 
-                               oninput="updateHeight(this.value)">
-                    </div>
-                </div>
+<!--            <section class="calculator-section">-->
+<!--                -->
+<!--                &lt;!&ndash; Height Input &ndash;&gt;-->
+<!--                <div class="input-section">-->
+<!--                    <div class="input-header">-->
+<!--                        <label class="input-label">Height</label>-->
+<!--                        <div class="value-display" id="height-display">170 cm</div>-->
+<!--                        <button class="unit-selector" onclick="openUnitModal('height')">-->
+<!--                            <span id="height-unit-display">cm</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="slider-container">-->
+<!--                        <input type="range" class="slider" id="height-slider" -->
+<!--                               min="100" max="300" value="170" -->
+<!--                               oninput="updateHeight(this.value)">-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <!-- Weight Input -->
-                <div class="input-section">
-                    <div class="input-header">
-                        <label class="input-label">Weight</label>
-                        <div class="value-display" id="weight-display">70 kg</div>
-                        <button class="unit-selector" onclick="openUnitModal('weight')">
-                            <span id="weight-unit-display">kg</span>
-                        </button>
-                    </div>
-                    <div class="slider-container">
-                        <input type="range" class="slider" id="weight-slider" 
-                               min="30" max="300" value="70" 
-                               oninput="updateWeight(this.value)">
-                    </div>
-                </div>
-            </section>
+<!--                &lt;!&ndash; Weight Input &ndash;&gt;-->
+<!--                <div class="input-section">-->
+<!--                    <div class="input-header">-->
+<!--                        <label class="input-label">Weight</label>-->
+<!--                        <div class="value-display" id="weight-display">70 kg</div>-->
+<!--                        <button class="unit-selector" onclick="openUnitModal('weight')">-->
+<!--                            <span id="weight-unit-display">kg</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="slider-container">-->
+<!--                        <input type="range" class="slider" id="weight-slider" -->
+<!--                               min="30" max="300" value="70" -->
+<!--                               oninput="updateWeight(this.value)">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </section>-->
         </div>
     </div>
 
