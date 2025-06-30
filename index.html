@@ -21,16 +21,26 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
             min-height: 100vh;
             color: #333;
             line-height: 1.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Google Ads Section */
@@ -57,16 +67,20 @@
 
         /* Main Content */
         .main-content {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
             gap: 10px;
             margin-bottom: 0px;
         }
 
         @media (min-width: 768px) {
             .main-content {
-                grid-template-columns: 1fr 1fr;
-                align-items: start;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
             }
         }
 
@@ -187,7 +201,7 @@
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); */
             border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
         }
@@ -617,53 +631,9 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Calculator Section -->
-<!--            <section class="calculator-section">-->
-<!--                -->
-<!--                &lt;!&ndash; Height Input &ndash;&gt;-->
-<!--                <div class="input-section">-->
-<!--                    <div class="input-header">-->
-<!--                        <label class="input-label">Height</label>-->
-<!--                        <div class="value-display" id="height-display">170 cm</div>-->
-<!--                        <button class="unit-selector" onclick="openUnitModal('height')">-->
-<!--                            <span id="height-unit-display">cm</span>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                    <div class="slider-container">-->
-<!--                        <input type="range" class="slider" id="height-slider" -->
-<!--                               min="100" max="300" value="170" -->
-<!--                               oninput="updateHeight(this.value)">-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                &lt;!&ndash; Weight Input &ndash;&gt;-->
-<!--                <div class="input-section">-->
-<!--                    <div class="input-header">-->
-<!--                        <label class="input-label">Weight</label>-->
-<!--                        <div class="value-display" id="weight-display">70 kg</div>-->
-<!--                        <button class="unit-selector" onclick="openUnitModal('weight')">-->
-<!--                            <span id="weight-unit-display">kg</span>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                    <div class="slider-container">-->
-<!--                        <input type="range" class="slider" id="weight-slider" -->
-<!--                               min="30" max="300" value="70" -->
-<!--                               oninput="updateWeight(this.value)">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </section>-->
         </div>
     </div>
 
-    <!-- Unit Selection Modal -->
-    <!--    <div id="unit-modal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeUnitModal()">&times;</span>
-                <h3 class="modal-title" id="modal-title">Select Unit</h3>
-                <div id="unit-options"></div>
-            </div>
-        </div> -->
 
     <script>
         // Global variables
