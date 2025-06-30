@@ -539,46 +539,51 @@
         .unit-tabs {
             display: inline-flex;
             margin-left: 10px;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid var(--light-grey);
-            background: var(--white);
-            box-shadow: 0 1px 4px 0 rgba(44,44,44,0.04);
+            border: 1.5px solid #e0e1e3;
+            background: #f7f7fa;
+            box-shadow: 0 2px 12px 0 rgba(44,44,44,0.06);
             position: relative;
+            min-height: 38px;
         }
         .unit-tab {
             background: transparent;
             color: var(--deep-grey);
             border: none;
-            padding: 5px 18px;
-            font-size: 13px;
+            padding: 8px 22px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            transition: background 0.18s, color 0.18s, transform 0.18s cubic-bezier(.4,1.4,.6,1), box-shadow 0.18s;
+            transition: background 0.18s, color 0.18s, transform 0.18s cubic-bezier(.4,1.4,.6,1), box-shadow 0.18s, border-radius 0.18s;
             outline: none;
-            border-right: 1px solid var(--light-grey);
+            border-right: 1px solid #e0e1e3;
             border-radius: 0;
             position: relative;
             z-index: 1;
+            min-width: 56px;
+            min-height: 38px;
         }
         .unit-tab:last-child {
             border-right: none;
         }
         .unit-tab.selected, .unit-tab:focus {
-            background: #2d3035;
-            color: var(--white);
+            background: linear-gradient(90deg, #23272f 80%, #444950 100%);
+            color: #fff;
             z-index: 2;
-            transform: translateY(-3px) scale(1.06);
-            box-shadow: 0 2px 8px 0 rgba(44,44,44,0.10);
-            border-top: 2px solid #23272f;
-            border-bottom: none;
-            border-left: 1px solid var(--light-grey);
-            border-right: 1px solid var(--light-grey);
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 4px 16px 0 rgba(44,44,44,0.13);
+            border-radius: 12px 12px 12px 12px;
+            border: 1.5px solid #23272f;
             margin-bottom: -2px;
-            border-radius: 8px 8px 0 0;
         }
         .unit-tab:not(.selected):hover {
-            background: var(--light-grey);
+            background: #ececf0;
+            color: #23272f;
+        }
+        .unit-tab:focus-visible {
+            outline: 2.5px solid #23272f;
+            outline-offset: 2px;
         }
 
         :root {
@@ -687,6 +692,7 @@
                     </div>
                 </div>
 
+                
                 <!-- BMI Value and Category -->
                 <div class="bmi-container">
                     <h2 class="section-title" style="margin-right: 20px">Your BMI</h2>
@@ -694,10 +700,6 @@
                 </div>
 
                 <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
-
-                <div class="bmi-description" id="bmi-description">
-                    Your BMI indicates that you have a normal weight for your height.
-                </div>
 
                 <div style="margin-top: 30px">
                     <!-- Height Input -->
@@ -734,6 +736,11 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="bmi-description" id="bmi-description">
+                    Your BMI indicates that you have a normal weight for your height.
+                </div>
+                
             </section>
         </div>
     </div>
