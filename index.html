@@ -388,59 +388,50 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .container {
-                padding: 15px;
+                padding: 10px;
             }
-
-            .section-title {
-                font-size: 15px;
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-
             .speedometer-container {
                 width: 320px;
                 height: 200px;
             }
-
-            .bmi-range-label {
-                font-size: 9px;
-                padding: 2px 4px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 5px;
             }
-
-            .bmi-value {
-                font-size: 36px;
-            }
-
-            .bmi-category {
-                font-size: 20px;
-            }
-
             .calculator-section,
             .results-section {
-                padding: 20px;
+                padding: 15px;
             }
-        }
-
-        @media (max-width: 480px) {
             .speedometer-container {
-                width: 280px;
-                height: 170px;
+                width: 100%;
+                max-width: 260px;
+                height: 140px;
             }
-
+            .section-title {
+                font-size: 15px;
+            }
+            .bmi-value {
+                font-size: 18px;
+            }
+            .bmi-category {
+                font-size: 12px;
+            }
             .bmi-range-label {
                 font-size: 8px;
                 padding: 1px 3px;
             }
-
-            .bmi-value-label {
-                font-size: 7px;
+            .unit-selector {
+                padding: 6px 8px;
+                font-size: 13px;
             }
-
-            .bmi-value {
-                font-size: 18px;
-            }
-
-            .bmi-category {
+            .input-label {
                 font-size: 12px;
             }
         }
@@ -458,6 +449,38 @@
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
+        }
+
+        .unit-tabs {
+            display: inline-flex;
+            margin-left: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            background: #e2e8f0;
+        }
+        .unit-tab {
+            background: transparent;
+            color: #3182ce;
+            border: none;
+            padding: 5px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+            border-right: 1px solid #cbd5e1;
+        }
+        .unit-tab:last-child {
+            border-right: none;
+        }
+        .unit-tab.selected, .unit-tab:focus {
+            background: #4299e1;
+            color: #fff;
+            z-index: 1;
+        }
+        .unit-tab:not(.selected):hover {
+            background: #dbeafe;
         }
     </style>
 </head>
@@ -564,9 +587,10 @@
                         <div class="input-header">
                             <label class="input-label">Height</label>
                             <div class="value-display" id="height-display">170 cm</div>
-                            <button class="unit-selector" onclick="openUnitModal('height')">
-                                <span id="height-unit-display">cm</span>
-                            </button>
+                            <div class="unit-tabs" id="height-unit-tabs">
+                                <button class="unit-tab selected" id="tab-cm" onclick="selectUnitTab('height', 'cm')">cm</button>
+                                <button class="unit-tab" id="tab-ft" onclick="selectUnitTab('height', 'ft')">ft-in</button>
+                            </div>
                         </div>
                         <div class="slider-container">
                             <input type="range" class="slider" id="height-slider"
@@ -580,9 +604,10 @@
                         <div class="input-header">
                             <label class="input-label">Weight</label>
                             <div class="value-display" id="weight-display">70 kg</div>
-                            <button class="unit-selector" onclick="openUnitModal('weight')">
-                                <span id="weight-unit-display">kg</span>
-                            </button>
+                            <div class="unit-tabs" id="weight-unit-tabs">
+                                <button class="unit-tab selected" id="tab-kg" onclick="selectUnitTab('weight', 'kg')">kg</button>
+                                <button class="unit-tab" id="tab-lbs" onclick="selectUnitTab('weight', 'lbs')">lbs</button>
+                            </div>
                         </div>
                         <div class="slider-container">
                             <input type="range" class="slider" id="weight-slider"
@@ -632,13 +657,13 @@
     </div>
 
     <!-- Unit Selection Modal -->
-    <div id="unit-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeUnitModal()">&times;</span>
-            <h3 class="modal-title" id="modal-title">Select Unit</h3>
-            <div id="unit-options"></div>
-        </div>
-    </div>
+    <!--    <div id="unit-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeUnitModal()">&times;</span>
+                <h3 class="modal-title" id="modal-title">Select Unit</h3>
+                <div id="unit-options"></div>
+            </div>
+        </div> -->
 
     <script>
         // Global variables
@@ -795,82 +820,48 @@
             updateBMI();
         }
 
-        // Modal functions
-        function openUnitModal(type) {
-            currentModal = type;
-            const modal = document.getElementById('unit-modal');
-            const title = document.getElementById('modal-title');
-            const options = document.getElementById('unit-options');
-            
+        // Remove modal functions and add tab-based unit selection
+        function selectUnitTab(type, unit) {
             if (type === 'height') {
-                title.textContent = 'Select Height Unit';
-                options.innerHTML = `
-                    <button class="unit-option ${heightUnit === 'cm' ? 'selected' : ''}" 
-                            onclick="selectUnit('cm')">Centimeters (cm)</button>
-                    <button class="unit-option ${heightUnit === 'ft' ? 'selected' : ''}" 
-                            onclick="selectUnit('ft')">Feet & Inches</button>
-                `;
-            } else {
-                title.textContent = 'Select Weight Unit';
-                options.innerHTML = `
-                    <button class="unit-option ${weightUnit === 'kg' ? 'selected' : ''}" 
-                            onclick="selectUnit('kg')">Kilograms (kg)</button>
-                    <button class="unit-option ${weightUnit === 'lbs' ? 'selected' : ''}" 
-                            onclick="selectUnit('lbs')">Pounds (lbs)</button>
-                `;
-            }
-            
-            modal.style.display = 'block';
-        }
-
-        function closeUnitModal() {
-            document.getElementById('unit-modal').style.display = 'none';
-        }
-
-        function selectUnit(unit) {
-            if (currentModal === 'height') {
                 heightUnit = unit;
-                document.getElementById('height-unit-display').textContent = unit === 'cm' ? 'cm' : 'ft';
-                
+                // Update tab UI
+                document.getElementById('tab-cm').classList.toggle('selected', unit === 'cm');
+                document.getElementById('tab-ft').classList.toggle('selected', unit === 'ft');
+                // Update slider range
                 const slider = document.getElementById('height-slider');
                 if (unit === 'cm') {
                     slider.min = 100;
-                    slider.max = 300;
+                    slider.max = 213;
+                    if (currentHeight < 100 || currentHeight > 213) currentHeight = 170;
                     slider.value = currentHeight;
                 } else {
                     slider.min = 122; // 4 feet in cm
-                    slider.max = 305; // 10 feet in cm
+                    slider.max = 213; // 7 feet in cm
+                    if (currentHeight < 122 || currentHeight > 213) currentHeight = 170;
                     slider.value = currentHeight;
                 }
-                
                 document.getElementById('height-display').textContent = formatHeightDisplay(currentHeight, heightUnit);
             } else {
                 weightUnit = unit;
-                document.getElementById('weight-unit-display').textContent = unit;
-                
+                // Update tab UI
+                document.getElementById('tab-kg').classList.toggle('selected', unit === 'kg');
+                document.getElementById('tab-lbs').classList.toggle('selected', unit === 'lbs');
+                // Update slider range
                 const slider = document.getElementById('weight-slider');
                 if (unit === 'kg') {
                     slider.min = 30;
-                    slider.max = 300;
+                    slider.max = 150;
+                    if (currentWeight < 30 || currentWeight > 150) currentWeight = 70;
                     slider.value = currentWeight;
                 } else {
                     slider.min = 66; // 30 kg in lbs
-                    slider.max = 661; // 300 kg in lbs
+                    slider.max = 330; // 150 kg in lbs
+                    if (kgToLbs(currentWeight) < 66 || kgToLbs(currentWeight) > 330) currentWeight = 70;
                     slider.value = kgToLbs(currentWeight);
                 }
-                
                 document.getElementById('weight-display').textContent = formatWeightDisplay(currentWeight, weightUnit);
             }
-            
-            closeUnitModal();
-        }
-
-        // Modal close on outside click
-        window.onclick = function(event) {
-            const modal = document.getElementById('unit-modal');
-            if (event.target === modal) {
-                closeUnitModal();
-            }
+            updateBMI();
         }
 
         // Initialize the app
