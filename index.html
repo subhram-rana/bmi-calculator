@@ -102,33 +102,38 @@
         }
 
         .section-title {
-            font-size: 18px;
-            font-weight: 200;
-            color: #3182ce;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--deep-grey);
+            letter-spacing: 0.5px;
             margin-bottom: 2px;
             text-align: center;
         }
 
         /* Input Sections */
         .input-section {
-            margin-bottom: 5px;
+            margin-bottom: 20px;
         }
 
         .input-header {
             display: flex;
             justify-content: space-between;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 5px;
+            gap: 1.5vw;
+            flex-wrap: wrap;
         }
 
         .input-label {
-            font-size: 14px;
-            font-weight: 200;
-            color: #3182ce;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--deep-grey);
+            flex-shrink: 0;
         }
 
         .unit-selector {
-            background: #4299e1;
+            background: black;
             color: white;
             border: none;
             padding: 8px 10px;
@@ -146,13 +151,20 @@
         .slider-container {
             position: relative;
             margin: 0px 0;
+            width: 100%;
+            max-width: none;
+            display: flex;
+            align-items: center;
         }
 
         .slider {
             width: 100%;
-            height: 3px;
-            border-radius: 4px;
-            background: linear-gradient(to right, #e2e8f0, #4299e1);
+            flex: 1 1 auto;
+            min-width: 120px;
+            max-width: 100%;
+            background: var(--light-grey);
+            height: 6px;
+            border-radius: 3px;
             outline: none;
             appearance: none;
             cursor: pointer;
@@ -160,39 +172,80 @@
 
         .slider::-webkit-slider-thumb {
             appearance: none;
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: #4299e1;
+            background: var(--deep-grey);
+            border: 2px solid var(--white);
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            transition: background 0.2s, transform 0.2s cubic-bezier(.4,1.4,.6,1), box-shadow 0.2s;
         }
 
         .slider::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-            background: #3182ce;
+            transform: scale(1.15);
+            background: var(--mid-grey);
+            box-shadow: 0 2px 8px 0 rgba(44,44,44,0.15);
+        }
+
+        .slider:active::-webkit-slider-thumb,
+        .slider::-webkit-slider-thumb:active {
+            background: #111216;
+            transform: scale(1.22) translateY(-3px);
+            box-shadow: 0 4px 16px 0 rgba(44,44,44,0.18);
+        }
+
+        .slider:focus::-webkit-slider-thumb {
+            outline: 2px solid var(--deep-grey);
         }
 
         .slider::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: #4299e1;
+            background: var(--deep-grey);
+            border: 2px solid var(--white);
             cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.2s, transform 0.2s cubic-bezier(.4,1.4,.6,1), box-shadow 0.2s;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            background: var(--mid-grey);
+            transform: scale(1.15);
+            box-shadow: 0 2px 8px 0 rgba(44,44,44,0.15);
+        }
+
+        .slider:active::-moz-range-thumb,
+        .slider::-moz-range-thumb:active {
+            background: #111216;
+            transform: scale(1.22) translateY(-3px);
+            box-shadow: 0 4px 16px 0 rgba(44,44,44,0.18);
+        }
+
+        /* For Firefox */
+        .slider::-ms-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--deep-grey);
+            border: 2px solid var(--white);
+            transition: background 0.2s, transform 0.2s cubic-bezier(.4,1.4,.6,1), box-shadow 0.2s;
+        }
+
+        .slider:active::-ms-thumb {
+            background: #111216;
+            transform: scale(1.22) translateY(-3px);
+            box-shadow: 0 4px 16px 0 rgba(44,44,44,0.18);
         }
 
         .value-display {
-            text-align: center;
-            font-size: 10px;
-            font-weight: 200;
-            color: #2d3748;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--deep-grey);
             margin-top: 10px;
-            padding: 5px;
-            background: rgba(66, 153, 225, 0.1);
+            padding: 5px 12px;
+            background: var(--light-grey);
             border-radius: 10px;
+            flex-shrink: 0;
         }
 
         /* Results Section */
@@ -209,8 +262,8 @@
         /* Speedometer */
         .speedometer-container {
             position: relative;
-            width: 350px;
-            height: 220px;
+            width: 440px;
+            height: 280px;
             margin: 0 auto 0px;
         }
 
@@ -278,19 +331,21 @@
 
         /* BMI Results */
         .bmi-value {
-            font-size: 20px;
-            font-weight: 1000;
-            color: #446ec2;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--deep-grey);
             margin-bottom: 2px;
         }
 
         .bmi-category {
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 700;
             padding: 3px 20px;
             border-radius: 25px;
             display: inline-block;
             margin-bottom: 10px;
+            background: var(--light-grey);
+            color: var(--deep-grey);
             transition: all 0.3s ease;
         }
 
@@ -324,12 +379,20 @@
             color: #8b0000;
         }
 
+        /* Responsive BMI result message */
         .bmi-description {
-            font-size: 11px;
+            font-size: 18px;
             color: #4a5568;
             line-height: 1.8;
-            max-width: 300px;
+            max-width: 600px;
+            width: 100%;
             margin: 0 auto;
+            box-sizing: border-box;
+        }
+        @media (min-width: 900px) {
+            .bmi-description {
+                max-width: 800px;
+            }
         }
 
         /* Unit Modal */
@@ -424,9 +487,9 @@
                 padding: 15px;
             }
             .speedometer-container {
-                width: 100%;
-                max-width: 260px;
-                height: 140px;
+                width: 98vw;
+                max-width: 360px;
+                height: 180px;
             }
             .section-title {
                 font-size: 15px;
@@ -446,7 +509,7 @@
                 font-size: 13px;
             }
             .input-label {
-                font-size: 12px;
+                font-size: 20px;
             }
         }
 
@@ -470,31 +533,42 @@
             margin-left: 10px;
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #cbd5e1;
-            background: #e2e8f0;
+            border: 1px solid var(--light-grey);
+            background: var(--white);
+            flex-shrink: 0;
         }
         .unit-tab {
             background: transparent;
-            color: #3182ce;
+            color: var(--deep-grey);
             border: none;
             padding: 5px 18px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s, transform 0.2s cubic-bezier(.4,1.4,.6,1), box-shadow 0.2s;
             outline: none;
-            border-right: 1px solid #cbd5e1;
+            border-right: 1px solid var(--light-grey);
         }
         .unit-tab:last-child {
             border-right: none;
         }
         .unit-tab.selected, .unit-tab:focus {
-            background: #4299e1;
-            color: #fff;
+            background: var(--deep-grey);
+            color: var(--white);
             z-index: 1;
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 0 4px 16px 0 rgba(44,44,44,0.10);
         }
         .unit-tab:not(.selected):hover {
-            background: #dbeafe;
+            background: var(--light-grey);
+        }
+
+        :root {
+            --deep-grey: #23272f;
+            --mid-grey: #444950;
+            --light-grey: #e5e7eb;
+            --accent-grey: #585a5c;
+            --white: #fff;
         }
     </style>
 </head>
