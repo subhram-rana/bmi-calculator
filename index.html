@@ -3,14 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator - Professional Body Mass Index Tool</title>
-    <meta name="description" content="Professional BMI Calculator with animated speedometer. Calculate your Body Mass Index instantly with our responsive, user-friendly tool. Works on all devices.">
-    <meta name="keywords" content="BMI calculator, body mass index, fitness, health, weight calculator, BMI tool">
+    <title>Free BMI Calculator Online - Body Mass Index Tool (2025)</title>
+    <meta name="description" content="Calculate your BMI instantly with our free, professional BMI Calculator. Interactive speedometer, mobile-friendly, and accurate Body Mass Index tool for all ages. Learn your BMI category and health tips.">
+    <meta name="keywords" content="BMI calculator, body mass index, BMI chart, BMI tool, health calculator, weight calculator, fitness, healthy weight, BMI online, BMI categories, BMI for adults, BMI for children, BMI speedometer, BMI 2025">
     <meta name="author" content="BMI Calculator App">
-    <meta property="og:title" content="Professional BMI Calculator Tool">
-    <meta property="og:description" content="Calculate your BMI instantly with our professional, responsive BMI calculator featuring animated speedometer visualization.">
+    <meta property="og:title" content="Free BMI Calculator Online - Body Mass Index Tool (2025)">
+    <meta property="og:description" content="Calculate your BMI instantly with our free, professional BMI Calculator. Interactive speedometer, mobile-friendly, and accurate Body Mass Index tool for all ages.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:image" content="https://ibb.co/cX2SKXc6">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free BMI Calculator Online - Body Mass Index Tool (2025)">
+    <meta name="twitter:description" content="Calculate your BMI instantly with our free, professional BMI Calculator. Interactive speedometer, mobile-friendly, and accurate Body Mass Index tool for all ages.">
+    <meta name="twitter:image" content="https://ibb.co/cX2SKXc6">
     <link rel="canonical" href="/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "BMI Calculator",
+      "operatingSystem": "All",
+      "applicationCategory": "HealthApplication",
+      "description": "Free, professional BMI Calculator with animated speedometer. Calculate your Body Mass Index instantly and learn your health category.",
+      "url": "https://yourdomain.com/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "image": "https://ibb.co/cX2SKXc6"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is BMI?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BMI, or Body Mass Index, is a simple calculation using a person's height and weight. It is used to categorize individuals as underweight, normal weight, overweight, or obese."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is BMI calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BMI is calculated by dividing a person's weight in kilograms by the square of their height in meters (kg/m²)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the BMI categories?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BMI categories are: Underweight (<18.5), Normal weight (18.5–24.9), Overweight (25–29.9), Obese Class I (30–34.9), Obese Class II (35–39.9), and Obese Class III (≥40)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is BMI accurate for everyone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BMI is a useful screening tool but does not directly assess body fat. It may not be accurate for athletes, children, elderly, or pregnant women."
+          }
+        }
+      ]
+    }
+    </script>
     
     <style>
         * {
@@ -605,10 +668,90 @@
             padding-right: 24px;
             box-sizing: border-box;
         }
+
+        /* FAQ Section Styles */
+        .bmi-faq-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 6px 32px rgba(44,44,44,0.10);
+            padding: 32px 24px 18px 24px;
+            margin: 40px auto 0 auto;
+            max-width: 600px;
+            width: 100%;
+            transition: box-shadow 0.2s;
+        }
+        .bmi-faq-card h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #23272f;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .faq-accordion {
+            width: 100%;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            background: none;
+            border: none;
+            outline: none;
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #23272f;
+            padding: 18px 0 14px 0;
+            cursor: pointer;
+            transition: color 0.2s;
+            text-align: left;
+        }
+        .faq-question:focus {
+            color: #3182ce;
+        }
+        .faq-icon {
+            margin-left: 12px;
+            font-size: 1.2em;
+            transition: transform 0.3s;
+            color: #3182ce;
+        }
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(90deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            font-size: 1rem;
+            color: #444950;
+            line-height: 1.7;
+            transition: max-height 0.35s cubic-bezier(.4,1.4,.6,1), padding 0.2s;
+            padding: 0 0;
+        }
+        .faq-answer.open {
+            padding: 0 0 16px 0;
+            max-height: 300px;
+        }
+        @media (max-width: 600px) {
+            .bmi-faq-card {
+                padding: 16px 6px 8px 6px;
+            }
+            .bmi-faq-card h2 {
+                font-size: 1.1rem;
+            }
+            .faq-question {
+                font-size: 0.98rem;
+            }
+            .faq-answer {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" role="main">
         <!-- Google Ads Section -->
         <!-- <section class="ads-section">
             <div class="ads-placeholder">
@@ -621,9 +764,10 @@
         <div class="main-content">
             <!-- Results Section -->
             <section class="results-section">
+                <h1 style="font-size: 2rem; text-align:center; margin-bottom: 10px;">Free BMI Calculator Online</h1>
                 <!-- Speedometer -->
                 <div class="speedometer-container">
-                    <svg class="speedometer" viewBox="0 0 350 220">
+                    <svg class="speedometer" viewBox="0 0 350 220" aria-label="BMI Speedometer showing BMI categories visually" title="BMI Speedometer">
                         <!-- Background arcs with proper BMI ranges -->
                         <!-- Underweight: BMI < 18.5 -->
                         <path class="speedometer-arc arc-underweight"
@@ -740,7 +884,48 @@
                 <div class="bmi-description" id="bmi-description">
                     Your BMI indicates that you have a normal weight for your height.
                 </div>
-                
+                <!-- FAQ Section: Modern Accordion -->
+                <div class="bmi-faq-card" role="region" aria-labelledby="faq-heading">
+                  <h2 id="faq-heading">Frequently Asked Questions about BMI</h2>
+                  <div class="faq-accordion" id="faq-accordion">
+                    <div class="faq-item">
+                      <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-label">
+                        What is BMI?
+                        <span class="faq-icon" aria-hidden="true">&#9654;</span>
+                      </button>
+                      <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-label">
+                        BMI, or Body Mass Index, is a simple calculation using a person's height and weight. It is used to categorize individuals as underweight, normal weight, overweight, or obese.
+                      </div>
+                    </div>
+                    <div class="faq-item">
+                      <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-label">
+                        How is BMI calculated?
+                        <span class="faq-icon" aria-hidden="true">&#9654;</span>
+                      </button>
+                      <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-label">
+                        BMI is calculated by dividing a person's weight in kilograms by the square of their height in meters (kg/m²).
+                      </div>
+                    </div>
+                    <div class="faq-item">
+                      <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-label">
+                        What are the BMI categories?
+                        <span class="faq-icon" aria-hidden="true">&#9654;</span>
+                      </button>
+                      <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-label">
+                        BMI categories are: Underweight (&lt;18.5), Normal weight (18.5–24.9), Overweight (25–29.9), Obese Class I (30–34.9), Obese Class II (35–39.9), and Obese Class III (≥40).
+                      </div>
+                    </div>
+                    <div class="faq-item">
+                      <button class="faq-question" aria-expanded="false" aria-controls="faq4" id="faq4-label">
+                        Is BMI accurate for everyone?
+                        <span class="faq-icon" aria-hidden="true">&#9654;</span>
+                      </button>
+                      <div class="faq-answer" id="faq4" role="region" aria-labelledby="faq4-label">
+                        BMI is a useful screening tool but does not directly assess body fat. It may not be accurate for athletes, children, elderly, or pregnant women.
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </section>
         </div>
     </div>
@@ -981,6 +1166,34 @@
                     el.style.transform = 'translateY(0)';
                 });
             }, 100);
+        });
+
+        // FAQ Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+          const faqAccordion = document.getElementById('faq-accordion');
+          if (faqAccordion) {
+            faqAccordion.querySelectorAll('.faq-question').forEach(btn => {
+              btn.addEventListener('click', function() {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                // Close all
+                faqAccordion.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                faqAccordion.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+                // Open this one if it was closed
+                if (!expanded) {
+                  this.setAttribute('aria-expanded', 'true');
+                  const answer = document.getElementById(this.getAttribute('aria-controls'));
+                  if (answer) answer.classList.add('open');
+                }
+              });
+              // Keyboard accessibility: open/close with Enter/Space
+              btn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  btn.click();
+                }
+              });
+            });
+          }
         });
     </script>
 </body>
