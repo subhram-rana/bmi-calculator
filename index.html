@@ -101,6 +101,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            box-sizing: border-box;
         }
 
         /* Google Ads Section */
@@ -134,6 +135,8 @@
             width: 100%;
             gap: 10px;
             margin-bottom: 0px;
+            box-sizing: border-box;
+            max-width: 100vw;
         }
 
         @media (min-width: 768px) {
@@ -317,6 +320,10 @@
             /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); */
             border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
 
         /* Speedometer */
@@ -327,6 +334,7 @@
             margin: 0 auto 0px;
             max-width: 100%;
             box-sizing: border-box;
+            overflow-x: auto;
         }
 
         .speedometer {
@@ -536,25 +544,42 @@
             .main-content {
                 grid-template-columns: 1fr;
                 gap: 20px;
+                width: 100%;
+                max-width: 100vw;
+            }
+            .results-section {
+                padding: 10px;
+                width: 100%;
+                max-width: 100vw;
             }
             .speedometer-container {
                 width: 320px;
                 height: 200px;
+                max-width: 100vw;
             }
         }
         @media (max-width: 600px) {
             .container {
                 padding: 5px;
+                width: 100vw;
+                max-width: 100vw;
+            }
+            .main-content {
+                width: 100vw;
+                max-width: 100vw;
             }
             .calculator-section,
             .results-section {
-                padding: 15px;
+                padding: 8px;
+                width: 100vw;
+                max-width: 100vw;
             }
             .speedometer-container {
-                width: 100%;
-                max-width: 100%;
+                width: 100vw;
+                max-width: 100vw;
                 height: auto;
                 min-height: 120px;
+                overflow-x: auto;
             }
             .section-title {
                 font-size: 15px;
@@ -679,6 +704,8 @@
             max-width: 600px;
             width: 100%;
             transition: box-shadow 0.2s;
+            box-sizing: border-box;
+            overflow-x: auto;
         }
         .bmi-faq-card h2 {
             font-size: 1.5rem;
@@ -689,6 +716,7 @@
         }
         .faq-accordion {
             width: 100%;
+            box-sizing: border-box;
         }
         .faq-item {
             border-bottom: 1px solid #e5e7eb;
@@ -737,6 +765,9 @@
         @media (max-width: 600px) {
             .bmi-faq-card {
                 padding: 16px 6px 8px 6px;
+                width: 100vw;
+                max-width: 100vw;
+                box-sizing: border-box;
             }
             .bmi-faq-card h2 {
                 font-size: 1.1rem;
@@ -746,6 +777,79 @@
             }
             .faq-answer {
                 font-size: 0.95rem;
+            }
+        }
+        /* Product Recommendation Grid */
+        .bmi-product-section {
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            max-width: 100vw;
+        }
+        .bmi-product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #23272f;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .bmi-product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
+            width: 100%;
+            max-width: 700px;
+            box-sizing: border-box;
+        }
+        .bmi-product-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(44,44,44,0.08);
+            padding: 18px 10px 12px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
+            min-height: 180px;
+            box-sizing: border-box;
+        }
+        .bmi-product-card:hover {
+            box-shadow: 0 6px 24px rgba(44,44,44,0.13);
+            transform: translateY(-3px) scale(1.03);
+        }
+        .bmi-product-img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            background: #f7fafc;
+        }
+        .bmi-product-heading {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #23272f;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .bmi-product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 10px;
+                width: 100vw;
+                max-width: 100vw;
+            }
+            .bmi-product-card {
+                padding: 10px 4px 8px 4px;
+                min-height: 120px;
+                box-sizing: border-box;
+            }
+            .bmi-product-img {
+                width: 48px;
+                height: 48px;
             }
         }
     </style>
@@ -845,6 +949,7 @@
 
                 <div class="bmi-category category-normal" id="bmi-category">Normal Weight</div>
 
+                <!-- User Input Section (restored, responsive) -->
                 <div style="margin-top: 30px">
                     <!-- Height Input -->
                     <div class="input-section">
@@ -881,8 +986,11 @@
                     </div>
                 </div>
 
-                <div class="bmi-description" id="bmi-description">
-                    Your BMI indicates that you have a normal weight for your height.
+                <div class="bmi-product-section" id="bmi-product-section">
+                  <div class="bmi-product-title">👇 How can I improve myself ?</div>
+                  <div class="bmi-product-grid" id="bmi-product-grid">
+                    <!-- Product cards will be rendered here -->
+                  </div>
                 </div>
                 <!-- FAQ Section: Modern Accordion -->
                 <div class="bmi-faq-card" role="region" aria-labelledby="faq-heading">
@@ -1060,16 +1168,12 @@
         function updateBMI() {
             const bmi = calculateBMI(currentHeight, currentWeight);
             const category = getBMICategory(bmi);
-            
             document.getElementById('bmi-value').textContent = bmi.toFixed(1);
-            
             const categoryElement = document.getElementById('bmi-category');
             categoryElement.textContent = getBMICategoryText(category);
             categoryElement.className = `bmi-category category-${category}`;
-            
-            document.getElementById('bmi-description').textContent = getBMIDescription(category);
-            
             updateSpeedometerNeedle(bmi);
+            renderProductCards(category);
         }
 
         // Height update function
@@ -1197,6 +1301,63 @@
             });
           }
         });
+
+        // Product card data for each BMI category (placeholder)
+        const bmiProductData = {
+          'underweight': [
+            { img: 'https://via.placeholder.com/70?text=UW1', heading: 'High-Calorie Protein' },
+            { img: 'https://via.placeholder.com/70?text=UW2', heading: 'Healthy Snacks' },
+            { img: 'https://via.placeholder.com/70?text=UW3', heading: 'Weight Gain Shakes' },
+            { img: 'https://via.placeholder.com/70?text=UW4', heading: 'Nutrient Supplements' },
+          ],
+          'normal': [
+            { img: 'https://via.placeholder.com/70?text=N1', heading: 'Fitness Tracker' },
+            { img: 'https://via.placeholder.com/70?text=N2', heading: 'Healthy Recipe Book' },
+            { img: 'https://via.placeholder.com/70?text=N3', heading: 'Yoga Mat' },
+            { img: 'https://via.placeholder.com/70?text=N4', heading: 'Multivitamins' },
+          ],
+          'overweight': [
+            { img: 'https://via.placeholder.com/70?text=OW1', heading: 'Low-Calorie Snacks' },
+            { img: 'https://via.placeholder.com/70?text=OW2', heading: 'Step Counter' },
+            { img: 'https://via.placeholder.com/70?text=OW3', heading: 'Meal Prep Containers' },
+            { img: 'https://via.placeholder.com/70?text=OW4', heading: 'Resistance Bands' },
+          ],
+          'obese-1': [
+            { img: 'https://via.placeholder.com/70?text=O1-1', heading: 'Portion Control Plates' },
+            { img: 'https://via.placeholder.com/70?text=O1-2', heading: 'Home Exercise Kit' },
+            { img: 'https://via.placeholder.com/70?text=O1-3', heading: 'Healthy Cookbook' },
+            { img: 'https://via.placeholder.com/70?text=O1-4', heading: 'Fitness App Subscription' },
+          ],
+          'obese-2': [
+            { img: 'https://via.placeholder.com/70?text=O2-1', heading: 'Smart Scale' },
+            { img: 'https://via.placeholder.com/70?text=O2-2', heading: 'Personal Blender' },
+            { img: 'https://via.placeholder.com/70?text=O2-3', heading: 'Guided Workout Plan' },
+            { img: 'https://via.placeholder.com/70?text=O2-4', heading: 'Healthy Snack Box' },
+          ],
+          'obese-3': [
+            { img: 'https://via.placeholder.com/70?text=O3-1', heading: 'Medical Consultation' },
+            { img: 'https://via.placeholder.com/70?text=O3-2', heading: 'Meal Replacement Shakes' },
+            { img: 'https://via.placeholder.com/70?text=O3-3', heading: 'Support Group Access' },
+            { img: 'https://via.placeholder.com/70?text=O3-4', heading: 'Low-Impact Exercise Gear' },
+          ],
+        };
+
+        // Render product cards based on BMI category
+        function renderProductCards(category) {
+          const grid = document.getElementById('bmi-product-grid');
+          grid.innerHTML = '';
+          const cards = bmiProductData[category] || [];
+          cards.forEach(card => {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'bmi-product-card';
+            // In the future, wrap with <a> for affiliate link
+            cardDiv.innerHTML = `
+              <img class="bmi-product-img" src="${card.img}" alt="${card.heading}">
+              <div class="bmi-product-heading">${card.heading}</div>
+            `;
+            grid.appendChild(cardDiv);
+          });
+        }
     </script>
 </body>
 </html>
