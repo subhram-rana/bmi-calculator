@@ -875,7 +875,7 @@
                         </div>
                         <div class="slider-container">
                             <input type="range" class="slider" id="weight-slider"
-                                   min="30" max="300" value="70"
+                                   min="30" max="150" value="70"
                                    oninput="updateWeight(this.value)">
                         </div>
                     </div>
@@ -1121,8 +1121,8 @@
                     slider.value = currentWeight;
                 } else {
                     slider.min = 66; // 30 kg in lbs
-                    slider.max = 330; // 150 kg in lbs
-                    if (kgToLbs(currentWeight) < 66 || kgToLbs(currentWeight) > 330) currentWeight = 70;
+                    slider.max = 331; // 150 kg in lbs (rounded)
+                    if (kgToLbs(currentWeight) < 66 || kgToLbs(currentWeight) > 331) currentWeight = 70;
                     slider.value = kgToLbs(currentWeight);
                 }
                 document.getElementById('weight-display').textContent = formatWeightDisplay(currentWeight, weightUnit);
@@ -1139,6 +1139,8 @@
                 let value = parseInt(e.target.value);
                 if (weightUnit === 'lbs') {
                     currentWeight = lbsToKg(value);
+                    // Clamp to 150 kg max
+                    if (currentWeight > 150) currentWeight = 150;
                 } else {
                     currentWeight = value;
                 }
